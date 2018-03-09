@@ -1,5 +1,5 @@
 # FortranHashDict
-A fast and easy-to-use Key-Value Dictionary for Fortran implemented with a hashtable and singly-linked lists.
+A fast and easy to use Key-Value Dictionary implemented with a hashtable and singly-linked lists, for Fortran 2003+.
 
 The Key-Value Dictionary is implemented as a derived type with user-accessible "methods" and "attributes".  
 Currently, FortranHashDict supports the Key-Value mappings:
@@ -38,16 +38,8 @@ Initialize the dictionary:
 
 ```fortran
 dict_1%init()                              !! Using default settings.
-dict_2%init(size=1000, is_mutable=.false.) !! Specify size and is_mutable attributes.
+dict_2%init(nitems=1000, is_mutable=.false.) !! Specify max # items and is_mutable attributes.
 ```
-
-Initialization options:
-* The expected max number of Key-Value pairs may be specified with the `size=N` argument. 
-  - The actual capacity of the dictionary will be prime number not less than the specified size. 
-  - **DEFAULT:** `size=101`
-* Prevent overwriting existing keys with the `is_mutable=.true.|.false.` argument. 
-  - The `is_mutable` attribute may be updated/changed at any time.
-  - **DEFAULT:** `is_mutable=.true.`
 
 
 
@@ -55,11 +47,31 @@ Initialization options:
 
 TODO:
 - [x] List and describe all dictionary "methods".
-- [ ] List and describe all dictionary "attributes".
+- [x] List and describe all dictionary "attributes".
 
 
 
 ### Methods
+* **INIT**: (Subroutine) Initialize the dictionary.
+
+```fortran
+call dict%init([nitems=N] [,] [is_mutable=.true.|.false])
+!! or
+call dict%init()
+!! or
+call dict%init(N)
+```
+
+Arguments             | Desc                                     | Default
+----------------------|------------------------------------------|------------------------
+nitems (optional)     | Expected Max # of key-value pairs        | `nitems=101`
+is_mutable (optional) | Allow/Prevent overwriting existing keys  | `is_mutable=.true.`
+
+Notes:
+* The hash computed for a key will use a prime number *P* not less than the specified nuber of items *N* such that *N<=P*.
+* The `is_mutable` attribute may be updated/changed at any time.
+
+
 * **PUT**: (Subroutine) Places a key-value pair into the dictionary. The key (key) and one of the mutually-exclusive values (ival, val, rvals) are required.
 
 ```fortran
@@ -97,7 +109,7 @@ call dict%del(key=mykey [, rc=r])
 call dict%del(mykey)
 ```
 
-**KEYS**: (Subroutine) Returns an array of keys in the dictionary.
+* **KEYS**: (Subroutine) Returns an array of keys in the dictionary.
 
 ```fortran
 call dict%keys(k=mykeys [, rc=r])  !! mykeys is an allocatable integer array
@@ -105,7 +117,7 @@ call dict%keys(k=mykeys [, rc=r])  !! mykeys is an allocatable integer array
 call dict%keys(mykeys)
 ```
 
-**HAS_KEY**: (Logical Function) Checks if a specified key exists in the dictionary. Returns logical true/false.
+* **HAS_KEY**: (Logical Function) Checks if a specified key exists in the dictionary. Returns logical true/false.
 
 ```fortran
 TF = dict%has_key(key=mykey)
@@ -113,7 +125,7 @@ TF = dict%has_key(key=mykey)
 TF = dict%has_key(mykey)
 ```
 
-**HASH**: (Integer Function) Computes the hash for a specified integer key. Returns integer.
+* **HASH**: (Integer Function) Computes the hash for a specified integer key. Returns integer.
 
 ```fortran
 myhash = dict%hash(key=mykey)
@@ -121,7 +133,7 @@ myhash = dict%hash(key=mykey)
 myhash = dict%hash(mykey)
 ```
 
-**FREE**: Deletes all key-value pairs and deallocates the dictionary.
+* **FREE**: Deletes all key-value pairs and deallocates the dictionary.
 
 ```fortran
 call dict%free()
@@ -130,22 +142,15 @@ call dict%free()
 
 ### Attributes
 
-**CAPACITY**:  
-**COUNT**:  
-**IS_INIT**:  
-**IS_MUTABLE**:
+* **CAPACITY**: The max number of items specified when the dictionary was initialized. 
+
+* **COUNT**: Current number of key-value pairs in dictionary.
+
+* **IS_INIT**: True if dictionary has been initialized.
+
+* **IS_MUTABLE**: True if the value for an existing key may be overwritten. This attribute may be changed to lock/unlock the dictionary at any time.
 
 
 -----------------------------------------
 ### Examples
-```fortran
-integer :: k, r, v
-integer, dimension(N) :: v1      !! Any 1D array of length "N" (incl. allocatable arrays) are OK.
-real(8), dimension(N) :: v2      !! Double-precision values only.
-
-!! Specify an integer value: ival=v
-k = 1
-v = 99
-r = 0
-dict%put(key=k, ival=v [, rc=r])
-```
+TODO
