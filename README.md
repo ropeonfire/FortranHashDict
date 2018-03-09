@@ -1,5 +1,5 @@
 # FortranHashDict
-A fast and easy to use Key-Value Dictionary implemented with a hashtable and singly-linked lists, for Fortran 2003+.
+A fast and easy to use object-oriented Key-Value Dictionary implemented with a hashtable and singly-linked lists, for Fortran 2003+.
 
 The Key-Value Dictionary is implemented as a derived type with user-accessible "methods" and "attributes".  
 Currently, FortranHashDict supports the Key-Value mappings:
@@ -10,6 +10,13 @@ Integer | Integer
 Integer | Arbitrary-length 1D array of Integers
 Integer | Arbitrary-length 1D array of double-precision Reals
 
+DOCUMENTATION TODO:
+- [x] List and describe all dictionary "methods".
+- [x] List and describe all dictionary "attributes".
+
+FUNCTIONALITY TODO:
+- [ ] ...
+- [ ] ...
 
 ## Compile and Link
 Compile and link the module to your source code. For example, using `gfortran`:
@@ -18,6 +25,7 @@ Compile and link the module to your source code. For example, using `gfortran`:
 gfortran -c fhdict.f90
 gfortran -o my_executable fhdict.o
 ```
+
 
 
 ## Basic Usage
@@ -44,12 +52,6 @@ dict_2%init(nitems=1000, is_mutable=.false.) !! Specify max # items and is_mutab
 
 
 ## Methods and Attributes
-
-TODO:
-- [x] List and describe all dictionary "methods".
-- [x] List and describe all dictionary "attributes".
-
-
 
 ### Methods
 * **INIT**: (Subroutine) Initialize the dictionary.
@@ -152,5 +154,16 @@ call dict%free()
 
 
 -----------------------------------------
-### Examples
-TODO
+## Attribution
+FortHashDict has been modified from the LGPLv3-licensed work by Izaak Beekman found at:  
+http://fortranwiki.org/fortran/show/hash+table+example
+
+Changes include:  
+(March 8, 2018)  
+1. Now computes the hash in a completely different manner.
+1. Now uses integer keys, rather than strings.
+1. Now permits a variety of value types, including: integers, arbitrary-length integer arrays, and arbitrary-length real arrays.
+1. Now adds several subroutine "methods" and "attributes" to the original hashtable derived type, including added functionality to the original methods of (init, put, get, free). 
+
+
+
