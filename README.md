@@ -13,9 +13,6 @@ DOCUMENTATION TODO:
 - [x] List and describe all dictionary "methods".
 - [x] List and describe all dictionary "attributes".
 
-FUNCTIONALITY TODO:
-- [ ] ...
-- [ ] ...
 
 ## Compile and Link
 Compile and link the module to your source code. For example, using `gfortran`:
