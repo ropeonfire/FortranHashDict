@@ -1,7 +1,7 @@
 # FortranHashDict
-A fast and easy to use object-oriented Key-Value Dictionary data structure implemented with a hashtable and singly-linked lists, for Fortran 2003+.
+A fast, easy to use Key-Value Dictionary data structure implemented with a hashtable and singly-linked lists, for Fortran 2003+.
 
-The Key-Value Dictionary is implemented as a derived type with user-accessible "methods" and "attributes".  
+The Key-Value Dictionary is implemented with object-oriented techniques as a derived type with user-accessible "methods" and "attributes".  
 Currently, FortranHashDict supports the Key-Value mappings:
 
 Key     | Value 
