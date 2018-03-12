@@ -1,5 +1,5 @@
 !! Copyright (c) 2018 William Matthew Peterson
-!! Distributed under MIT License.
+!! Distributed under LGPLv3 License.
 !! 
 module FHDICT
     !! A Key-Value Dictionary implemented with a hashtable and singly-linked lists.
