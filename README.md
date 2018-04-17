@@ -66,8 +66,8 @@ nitems (optional)     | Expected Max # of key-value pairs        | `nitems=101`
 is_mutable (optional) | Allow/Prevent overwriting existing keys  | `is_mutable=.true.`
 
 Notes:
-* The hash computed for a key will use a prime number *P* not less than the specified nuber of items *N* such that *N<=P*.
-* The `is_mutable` attribute may be updated/changed at any time.
+1. The hash computed for a key will use a prime number *P* not less than the specified nuber of items *N* such that *N<=P*.
+1. The `is_mutable` attribute may be updated/changed at any time.
 
 
 * **PUT**: (Subroutine) Places a key-value pair into the dictionary. The key (key) and one of the mutually-exclusive values (ival, val, rvals) are required.
